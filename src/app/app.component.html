@@ -1,0 +1,73 @@
+<h1>Contacts</h1>
+
+<form [formGroup]="parkingForm">
+
+ Veiculo:<br/> 
+  <input type="any" size="40" formControlName="veiculo"/>
+  <div *ngIf="parkingForm.controls.veiculo.invalid && 
+              parkingForm.controls.veiculo.touched">
+    <div class="error" *ngIf="parkingForm.controls.veiculo.errors?.required">
+      Informe Modelo do Veiculo
+    </div>
+  </div>
+  <br/>
+
+  Placa do Veiculo:<br/>
+  <input type="any" size="7" formControlName="placa" />
+  <div *ngIf="parkingForm.controls.placa.invalid && 
+              parkingForm.controls.placa.touched">
+    <div class="error" *ngIf="parkingForm.controls.placa.errors?.required">
+      Informe Placa do Veiculo
+    </div>
+    <div class="error" *ngIf="parkingForm.controls.placa.errors?.minLenght">
+      Informe Valor de Placa Válido
+    </div>
+  </div>
+  <br/>
+
+  Nome do Condutor do Veiculo:<br/>
+  <input type="text" size="40" formControlName="driver"/>
+  <div *ngIf="parkingForm.controls.driver.invalid &&
+              parkingForm.controls.driver.touched">
+    <div class="error" *ngIf="parkingForm.controls.driver.errors?.required">
+      Informe o Nome do Condutor
+    </div>
+  </div>
+  <br/>
+
+  Contato do Condutor do Veiculo<br/>
+  <input type="any" size="20" formControlName="driverContact"/>
+  <div *ngIf="parkingForm.controls.driverContact.invalid &&
+              parkingForm.controls.driverContact.touched">
+    <div class="error" *ngIf="parkingForm.controls.driverContact.errors?.required">
+      Informe o Contato do Condutor
+    </div>
+    <div class="error" *ngIf="parkingForm.controls.driverContact.errors?.minLenght">
+      Contato não Possui Caracteres suficientes
+    </div>
+  </div>
+
+
+  <input type="button" value="Salvar" (click)="save()" [disabled]="parkingForm.invalid"/>
+  <br/><br>
+  <table border="1" style="width:90%;">
+    <thead>
+      <tr>
+        <th>Veiculo</th>
+        <th>Placa</th>
+        <th>Nome do Motorista</th>
+        <th>Contato do Motorista</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of allCars">
+        <td>{{ c.veiculo }}</td>
+        <td>{{ c.placa }}</td>
+        <td>{{ c.driver }}</td>
+        <td>{{ c.driverContact }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <br/>
+
+</form>
